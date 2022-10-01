@@ -1,4 +1,7 @@
-# api-user-mannager
+```
+/users = everything regarding users
+/healt = status server
+```
 
 ```
 Method	 URL	 Operation
