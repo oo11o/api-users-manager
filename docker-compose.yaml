@@ -1,0 +1,31 @@
+version: '3'
+services:
+  api-user:
+    container_name: api-user
+    build: ./api
+    command: npm run prod
+    restart: unless-stopped
+    ports:
+      - "3010:3010"
+    volumes:
+      - ./api/:/api
+    depends_on:
+      - db-user
+    networks:
+      - docker-api-user
+
+  db-user:
+    container_name: db-user
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_USER: example
+      MARIADB_PASSWORD: example
+      MARIADB_DATABASE: test
+    networks:
+      - docker-api-user
+
+networks:
+  docker-api-user:
+    driver: bridge
